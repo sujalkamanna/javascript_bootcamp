@@ -13,3 +13,17 @@ console.log(d);
 
 e = 100
 console.log(e)
+
+
+// const z = 200
+// console.log(z)
+
+// z = 300
+// console.log(z)
+
+let xyz = 102030
+console.log(xyz)
+
+// cannot redeclare
+// let xyz = 304050 
+// console.log(xyz)
