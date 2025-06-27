@@ -24,3 +24,19 @@ console.log(lw_case)
 
 charat = "This is string";
 console.log(charat.charAt(0))
+
+slice_string = "String to be sliced";
+console.log(slice_string.slice(0,3));
+
+console.log(slice_string.indexOf("S"))
+
+console.log(slice_string.replace("to" ,"is"))
+
+console.log(slice_string.split(" "))
+
+reverse_string = "This is the string to be reversed";
+function revstr(str){
+    return str.split('').reverse().join('')
+    console.log(reverse_string)
+}
+console.log(revstr(reverse_string));
