@@ -9,3 +9,19 @@ function check_palindrome(str) {
 }
 
 check_palindrome(palindrome_string);
+
+
+function checking_palindrome(palindrome_string){
+    let left, right;
+    left = 0;
+    right = palindrome_string.length -1
+    while(left<right){
+        if(palindrome_string[left] != palindrome_string[right]){
+            return false;
+        }
+        left++;
+        right--;
+    }
+    return true
+}
+console.log(checking_palindrome(palindrome_string))

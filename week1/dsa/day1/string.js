@@ -1,6 +1,10 @@
 let str1 = "Hello, world!";
 let str2 = "Single quotes also work.";
 
+// string3 = "hello Javascript"
+// string3[0] = "H"
+// console.log(string3)
+
 console.log(str1);
 console.log(str2);
 
