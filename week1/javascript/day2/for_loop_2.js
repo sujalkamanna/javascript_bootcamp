@@ -4,4 +4,4 @@ sum = 0;
 for (let i = 0; i <= n; i++) {
   sum = sum + i;
 }
-console.log("the sum of", n, "numbers is", sum);
+console.log("The sum of", n, "numbers is", sum);
