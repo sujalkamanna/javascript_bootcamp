@@ -18,3 +18,5 @@ console.log(arr4.reverse()); //reversing array
 
 arr4.splice(1, 3, 21, 22, 23);
 console.log(arr4);
+
+console.log(arr4.includes(1))
