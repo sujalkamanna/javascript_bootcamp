@@ -1,13 +1,19 @@
-function average(x,y){
+function average1(x,y){
     console.log("The average of" , x , "and" , y , "is:" , (x+y)/2)
 
 }
 
-average(10,20)
+average1(10,20)
 
 
 function average(x,y){
-    console.log("The average of" , `${x}` , "and" , `${y}` , "is:" , (x+y)/2)
+    return `The average of ${x} and ${y} is: ${(x+y)/2}`
 
 }
-average(10,20)
+console.log(average(20,30))
+
+
+const sum = (p,q) =>{
+    console.log("sum is:",p+q);
+}
+(sum(10,20))
