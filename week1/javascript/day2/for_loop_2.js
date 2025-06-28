@@ -5,3 +5,14 @@ for (let i = 0; i <= n; i++) {
   sum = sum + i;
 }
 console.log("The sum of", n, "numbers is", sum);
+
+
+
+
+var obj = {
+    key1 : "this is a value",
+    key2 : "this is another value"
+}
+for (let key in obj){
+    console.log(key, ":", obj[key])
+}
