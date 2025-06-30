@@ -37,3 +37,7 @@ console.log(slice_string.indexOf("S"));
 console.log(slice_string.replace("to", "is"));
 
 console.log(slice_string.split(" "));
+
+//TODO regex implementation
+// 2 regex pattern 1 email 2 mobile no +91 / 10
+// @ domain 

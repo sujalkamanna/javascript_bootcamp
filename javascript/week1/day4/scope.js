@@ -16,7 +16,9 @@ if (true) {
 // console.log(b, c); //ReferenceError
 
 //nested funtions - lexical scoping
-
+// TBD is to be discussed "question"
+// TODO
+// info;
 function outer() {
   let x = 1000;
   function inner() {

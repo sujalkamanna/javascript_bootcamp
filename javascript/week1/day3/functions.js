@@ -27,3 +27,10 @@ add(10,20);
 (function() {
     console.log("inside anonymous function")
 })();
+
+function add2(u,v=20)
+{   
+    return u+v;
+}
+console.log(add2(10));
+

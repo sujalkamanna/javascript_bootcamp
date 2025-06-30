@@ -10,7 +10,7 @@ function check_palindrome(str) {
 
 check_palindrome(palindrome_string);
 
-
+//TC and SC
 function checking_palindrome(palindrome_string){
     let left, right;
     left = 0;

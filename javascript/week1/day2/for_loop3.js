@@ -11,3 +11,14 @@ for ( let frts of fruits){
 for (let i=0;i<fruits.length ;i++ ){
     console.log(fruits[i])
 }
+
+//for each
+for (let i =0;i<fruits;i++){
+    console.log(i)
+}
+
+console.log('\n ---------------------')
+
+fruits.forEach(element => {
+    console.log(element)
+});
