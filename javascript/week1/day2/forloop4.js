@@ -15,6 +15,11 @@ let obj = {
 };
 len = Object.keys(obj).length
 console.log("Length of obj is:",len)
+keys = Object.keys(obj)
 for (let i =0;i<len;i++){
-    console.log(Object[i])
+    console.log(keys[i] , obj[keys[i]])
+}
+
+for ( let key in obj){
+  console.log(key,obj[key])
 }
