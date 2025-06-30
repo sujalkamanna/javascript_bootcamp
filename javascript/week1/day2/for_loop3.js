@@ -22,3 +22,20 @@ console.log('\n ---------------------')
 fruits.forEach(element => {
     console.log(element)
 });
+
+//break pass
+
+for(let d = 0;d<10;d++){
+    if(d ==6){
+        continue;
+    }
+    console.log(d)
+}
+
+
+for(let d = 0;d<10;d++){
+    if(d ==6){
+        break;
+    }
+    console.log(d)
+}
