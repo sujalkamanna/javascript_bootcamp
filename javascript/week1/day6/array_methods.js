@@ -19,6 +19,7 @@ arr1.forEach((element) => {
 
 let nums = [42, 51, 89, 41];
 console.log(nums);
-nums.forEach((element) => {
-  console.log(element);
+nums.forEach((n) => {
+  console.log(n);
+  console.log(n*2);
 });
