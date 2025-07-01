@@ -15,3 +15,7 @@ const regularUser = {
 };
 console.log(regularUser)
 console.log(regularUser.fullName)
+
+// delete regularUser.email
+// console.log(regularUser)
+
