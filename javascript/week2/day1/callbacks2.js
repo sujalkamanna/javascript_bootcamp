@@ -16,3 +16,9 @@ setTimeout(() => {
 }, 4000);
 
 console.log("End")
+
+
+const greet = () =>{
+    alert("good morning")
+}
+greet()
