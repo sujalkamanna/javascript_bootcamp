@@ -1,7 +1,12 @@
 function walk() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      resolve("walking the dog");
+      const walk = true;
+      if (walk) {
+        resolve("Walking the dog");
+      } else {
+        reject("you didnt");
+      }
     }, 3000);
   });
 }
@@ -10,7 +15,12 @@ function walk() {
 function clean() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      resolve("Cleaning the house");
+      const dog = true;
+      if (dog) {
+        resolve("Cleaning the house");
+      } else {
+        reject("you didnt");
+      }
     }, 2000);
   });
 }
@@ -19,7 +29,12 @@ function clean() {
 function study() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      resolve("you are studying");
+      const study = true;
+      if (study) {
+        resolve("you studied");
+      } else {
+        reject("you didnt");
+      }
     }, 1000);
   });
 }
@@ -47,5 +62,6 @@ walk()
   })
   .then((value) => {
     console.log(value);
-    console.log("done all the tasks"), clean();
-  });
+    console.log("done all the tasks");
+  })
+  .catch(error=>console.log(error))
