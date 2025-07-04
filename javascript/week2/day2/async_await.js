@@ -25,4 +25,9 @@ async function function_name() {
   //   });
 }
 console.log("welcome to weather control room");
-function_name();
+
+let a = function_name();
+a.then(([temp, weather]) => {
+  console.log("the weather of delhi is :", temp);
+  console.log("the weather of banglore is :", weather);
+});
