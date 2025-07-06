@@ -11,7 +11,7 @@ function Greeting() {
   const name = "Anna";
   const a = 10;
   const b = 20;
-  const c = a+b;
+  const c = a + b;
   return (
     <div>
       <h1>Hello, {name}!</h1>
@@ -23,16 +23,27 @@ function Greeting() {
       <p>this is a paragraph</p>
       <br />
       <p> adding line break</p>
-      <p> <b> this is a bold text</b></p>
-      <p> <i> this is a italic text</i></p>
+      <p>
+        {" "}
+        <b> this is a bold text</b>
+      </p>
+      <p>
+        {" "}
+        <i> this is a italic text</i>
+      </p>
       <p> added addition of a and b is: {c}</p>
-      <p> done by another method {10+20}</p>
+      <p> done by another method {10 + 20}</p>
       <div>
         <hr />
         <p>inside another div</p>
+        <p style={{ color: "red" }}>red coloured element</p>
+        <p style={{ fontFamily: "cursive" }}>cursive</p>
+        <p style={{ fontSize: "20px" }}>cursive</p>
+        <img src="/chatgpticon.jpg" alt="" style={{ width: '150px',
+    height: '150px', }} />
+   
       </div>
     </div>
-  
   );
 }
 export { Greeting };
