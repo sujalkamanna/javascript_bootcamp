@@ -1,18 +1,14 @@
-arr = [4, 1, 84, 54, 1, 44, 65, 3, 64, 3, 8];
+let arr = [4, 1, 84, 54, 1, 44, 65, 3, 64, 3, 8];
 
-let len = arr.length;
-let i;
-let left = 0;
-let right =1;
-var count = 0;
-
-while (left < right) {
-  if (arr[left] === arr[right]) {
-    arr[left] = left[i]
-    console.log("match found");
-    count++;
+let duplicates = false;
+arr.sort((a, b) => a - b);
+for (let i = 0; i < arr.length; i++) {
+  if (arr[i] === arr[i - 1]) {
+    // console.log(arr[i],arr[i-1]);
+    arr.splice(i, 1);
+    duplicates = true;
   }
-
-  right++;
 }
-console.log(count);
+console.log(duplicates);
+
+console.log(arr);
