@@ -19,6 +19,6 @@ console.log("End")
 
 
 const greet = () =>{
-    alert("good morning")
+    console.log("good morning")
 }
 greet()

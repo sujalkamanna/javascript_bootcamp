@@ -27,7 +27,10 @@ async function function_name() {
 console.log("welcome to weather control room");
 
 let a = function_name();
-a.then(([temp, weather]) => {
-  console.log("the weather of delhi is :", temp);
-  console.log("the weather of banglore is :", weather);
-});
+console.log(a)
+// a.then(([temp, weather]) => {
+//   console.log("the weather of delhi is :", temp);
+//   console.log("the weather of banglore is :", weather);
+// });
+// let b = await function_name();
+// console.log(b)

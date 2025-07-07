@@ -1,3 +1,7 @@
+
+// Count Positives, Negatives, Zeros	
+// Count how many positive, negative, and zero values are in an array.
+
 let arr = [10, 0, 20, 30, 40, 50, 60, -1];
 
 let positive = 0;

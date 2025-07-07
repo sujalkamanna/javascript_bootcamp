@@ -6,12 +6,15 @@ console.log("You have reached the end of the program");
 
 try {
   console.log(x);
-} catch {
+} 
+catch {
   console.error("error!! x is not declared");
-} finally {
+} 
+finally {
   console.log("solve the error"); // this always exeecutes
 }
 
+//promot
 const prompt = require("prompt-sync")();
 
 const value = parseInt(prompt("Please enter a no:"));

@@ -1,4 +1,4 @@
-//Merge Two Sorted Arrays
+//Merge Two arrays and Sorted them
 let arr1 = [1, 3, 5, 7];
 let arr2 = [2, 4, 6, 8, 10];
 

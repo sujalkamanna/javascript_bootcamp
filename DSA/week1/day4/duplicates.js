@@ -1,3 +1,6 @@
+// Check for Duplicates	
+// Given an array of integers, determine if any value appears at least twice.
+
 let arr = [4, 1, 84, 54, 1, 44, 65, 3, 64, 3, 8];
 
 let duplicates = false;
@@ -12,3 +15,12 @@ for (let i = 0; i < arr.length; i++) {
 console.log(duplicates);
 
 console.log(arr);
+/*
+Time Complexity
+O(n)
+ */
+
+/*
+TODO
+time optimization
+*/
