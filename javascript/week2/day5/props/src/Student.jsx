@@ -6,6 +6,7 @@ function Student(props) {
       <p>Name: {props.name}</p>
       <p>Age: {props.age}</p>
       <p>Is Student = {props.isStudent ? "Yes" : "No"}</p>
+      <p> Std = {props.std}</p>
     </div>
   );
 }
@@ -14,6 +15,7 @@ Student.propTypes = {
   name: PropTypes.string,
   age: PropTypes.number,
   isStudent: PropTypes.bool,
+
 };
 
 
@@ -23,3 +25,5 @@ Student.defaultProps = {
   isStudent: false,
 };
 export default Student;
+
+
