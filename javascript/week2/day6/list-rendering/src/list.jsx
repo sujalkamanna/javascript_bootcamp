@@ -7,7 +7,12 @@ function List() {
     { name: "coconut", calories: 30 },
     { name: "pineapple", calories: 30 },
   ];
-  const listItems = fruits.map(fruit.name, index=> <li key={fruits.name}>{fruits.name}</li>);
+
+  const listItems = fruits.map((fruit, index) => (
+    <li key={index}>
+      {fruit.name} - {fruit.calories} calories
+    </li>
+  ));
 
   return <ol>{listItems}</ol>;
 }
