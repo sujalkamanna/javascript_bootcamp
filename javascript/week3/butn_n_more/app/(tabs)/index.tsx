@@ -12,6 +12,7 @@ import {
   Alert,
   Modal,
   StatusBar,
+  ActivityIndicator,
 } from "react-native";
 import { styles1 } from "./styles";
 
@@ -87,7 +88,12 @@ export default function App() {
         </View>
       </Modal>
       <View>
-        <StatusBar backgroundColor="#000000" barStyle="light-content" hidden/>
+        <StatusBar backgroundColor="#000000" barStyle="light-content" hidden />
+      </View>
+      <View>
+        <ActivityIndicator />
+        <ActivityIndicator size="large" color= "#999"/>
+        <ActivityIndicator size="large" color="#3f3f3f" animating={true} />
       </View>
     </ScrollView>
   );
