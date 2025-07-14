@@ -1,15 +1,19 @@
-import { View, Text, Image, ImageBackground } from "react-native";
+import { View, Text, Image, ImageBackground, ScrollView } from "react-native";
 
 const local_image = require("../../assets/images/adaptive-icon.png");
 
 export default function App() {
   return (
-    <View
+    <ScrollView
       style={{
         flex: 1,
         backgroundColor: "plum",
-        justifyContent: "center",
+        padding: 60,
+      }}
+      contentContainerStyle={{
         alignItems: "center",
+        justifyContent: "center",
+        paddingVertical: 20,
       }}
     >
       <View
@@ -39,7 +43,11 @@ export default function App() {
         </Text>
       </View>
 
-      <Image source={local_image} style={{ margin: 10, height: 100, width: 100 }} />
+      <Image
+        source={local_image}
+        style={{ margin: 10, height: 100, width: 100 }}
+        accessibilityLabel="Local app icon"
+      />
 
       <Image
         source={{ uri: "https://picsum.photos/seed/picsum/200/300" }}
@@ -58,6 +66,18 @@ export default function App() {
       >
         <Text style={{ color: "white", fontWeight: "bold" }}>IMAGE TEXT</Text>
       </ImageBackground>
-    </View>
+
+      <Text style={{ margin: 20, paddingHorizontal: 10, textAlign: "center" }}>
+        Lorem Ipsum is simply dummy text of the printing and typesetting
+        industry. Lorem Ipsum has been the industry's standard dummy text ever
+        since the 1500s...
+      </Text>
+
+      <Image
+        source={local_image}
+        style={{ margin: 10, height: 100, width: 100 }}
+        accessibilityLabel="Local app icon"
+      />
+    </ScrollView>
   );
 }
