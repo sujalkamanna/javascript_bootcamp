@@ -5,8 +5,11 @@ import {
   ImageBackground,
   ScrollView,
   StyleSheet,
+  TextStyle,
+  Button,
 } from "react-native";
 import { styles1 } from "./styles";
+// import { Button } from "@react-navigation/elements";
 
 const local_image = require("../../assets/images/adaptive-icon.png");
 export default function App() {
@@ -22,10 +25,26 @@ export default function App() {
         <Text style={{ backgroundColor: "blue", margin: 10, color: "plum" }}>
           this is some random text and added styling using inline css
         </Text>
+        <Text style={containerStyle}>
+          text written using object type declaration
+        </Text>
       </View>
+
+      <Button
+        title="Press"
+        onPress={() => alert("Button pressed")}
+        color={"midnightblue"} disabled
+      />
+      
     </ScrollView>
   );
 }
+
+const containerStyle: TextStyle = {
+  alignContent: "center",
+  fontWeight: "100",
+};
+
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
