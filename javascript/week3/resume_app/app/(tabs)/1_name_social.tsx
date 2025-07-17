@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: "timesnewroman",
     fontWeight: "bold",
-    marginBottom: 10,
+    marginBottom: 5,
   },
   linksRow: {
     flexDirection: "row",
@@ -72,6 +72,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   separator: {
-    color: "#444",
+    color: "#000000",
   },
 });

@@ -9,11 +9,15 @@ export default function Education() {
       {/* BE */}
       <View style={styles.entry}>
         <View style={styles.row}>
-          <Text style={styles.institution}>RMD Sinhgad Technical Institute Campus</Text>
+          <Text style={styles.institution}>
+            RMD Sinhgad Technical Institute Campus
+          </Text>
           <Text style={styles.location}>Pune, Maharashtra</Text>
         </View>
         <View style={styles.row}>
-          <Text style={styles.details}>BE in Computer Science | CGPA: 8.06</Text>
+          <Text style={styles.details}>
+            BE in Computer Science | CGPA: 8.06
+          </Text>
           <Text style={styles.year}>2021</Text>
         </View>
       </View>
@@ -56,15 +60,16 @@ const styles = StyleSheet.create({
     fontFamily: "Times New Roman",
     borderBottomColor: "#ccc",
     borderBottomWidth: 1,
-    marginBottom: 16,
+    marginBottom: 5,
   },
   entry: {
-    marginBottom: 20,
+    marginBottom: 5, // reduced from 20
   },
   row: {
     flexDirection: "row",
     justifyContent: "space-between",
     flexWrap: "wrap",
+    marginBottom: 5, // added for consistent spacing
   },
   institution: {
     fontSize: 14,

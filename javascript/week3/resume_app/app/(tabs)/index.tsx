@@ -18,14 +18,16 @@ import Publication from "./6_publications";
 export default function HomeScreen() {
   return (
     <ScrollView style={{ padding: 16 }}>
-      <Name_Social />
-      <Education />
-      <Profile_Summary />
-      <Professional_Experience />
-      <Projects />
-      <Publication />
-      <Certification />
-      <Skills />
+      <View style = {{backgroundColor:"#fcfcfc"}}>
+        <Name_Social />
+        <Education />
+        <Profile_Summary />
+        <Professional_Experience />
+        <Projects />
+        <Publication />
+        <Certification />
+        <Skills />
+      </View>
     </ScrollView>
   );
 }
