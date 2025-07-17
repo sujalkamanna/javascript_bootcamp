@@ -1,7 +1,21 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { 
+  View, 
+  Text, 
+  StyleSheet, 
+  Platform 
+} from "react-native";
 
-const experiences = [
+// Define a type for the experience object
+interface Experience {
+  title: string;
+  location: string;
+  company: string;
+  duration: string;
+  description: string;
+}
+
+const experiences: Experience[] = [
   {
     title: "Web Developer Intern Python-Django",
     location: "Pune, Maharashtra",
@@ -23,23 +37,30 @@ const experiences = [
 export default function Professional_Experience() {
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>PROFESSIONAL EXPERIENCE</Text>
+      <View>
+        <View/>
+      </View>
 
       {experiences.map((exp, index) => (
         <View key={index} style={styles.entry}>
-          {/* First row: Title left, Location right */}
-          <View style={styles.row}>
-            <Text style={styles.title}>{exp.title}</Text>
-            <Text style={styles.location}>{exp.location}</Text>
+          <View style={styles.entryHeader}>
+            <Text style={styles.title} numberOfLines={2}>
+              {exp.title}
+            </Text>
+            <Text style={styles.location} numberOfLines={1}>
+              {exp.location}
+            </Text>
           </View>
 
-          {/* Second row: Company left, Duration right */}
-          <View style={[styles.row, { marginBottom: 6 }]}>
-            <Text style={styles.company}>{exp.company}</Text>
-            <Text style={styles.duration}>{exp.duration}</Text>
+          <View style={styles.entrySubheader}>
+            <Text style={styles.company} numberOfLines={1}>
+              {exp.company}
+            </Text>
+            <Text style={styles.duration} numberOfLines={1}>
+              {exp.duration}
+            </Text>
           </View>
 
-          {/* Description */}
           <Text style={styles.description}>{exp.description}</Text>
         </View>
       ))}
@@ -50,62 +71,124 @@ export default function Professional_Experience() {
 const styles = StyleSheet.create({
   container: {
     paddingVertical: 16,
-    paddingHorizontal: 20, // Added for consistency
+    paddingHorizontal: 20,
+  },
+  headerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 12,
+    paddingBottom: 8,
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(0,0,0,0.1)',
+  },
+  headerUnderline: {
+    width: 4,
+    height: 20,
+    backgroundColor: '#1a73e8',
+    marginRight: 10,
+    borderRadius: 2,
   },
   header: {
     fontSize: 16,
-    fontWeight: "bold",
-    fontFamily: "Times New Roman",
-    borderBottomColor: "#ccc",
-    borderBottomWidth: 1,
-    marginBottom: 10,
+    fontWeight: '600',
+    color: '#1f2937',
+    letterSpacing: 0.5,
+    ...Platform.select({
+      ios: {
+        fontFamily: 'System',
+      },
+      android: {
+        fontFamily: 'Roboto',
+      },
+    }),
   },
   entry: {
-    marginBottom: 10,
+    marginBottom: 16,
+    paddingBottom: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(0,0,0,0.05)',
   },
-  row: {
+  entryHeader: {
     flexDirection: "row",
     justifyContent: "space-between",
-    flexWrap: "wrap",
+    alignItems: "center",
+    marginBottom: 6,
   },
   title: {
     fontSize: 14,
-    fontWeight: "bold",
-    fontFamily: "Times New Roman",
-    flexShrink: 1,
-    maxWidth: "60%",
-    textAlign: "left",
+    fontWeight: "600",
+    color: '#1f2937',
+    flex: 0.6,
+    ...Platform.select({
+      ios: {
+        fontFamily: 'System',
+      },
+      android: {
+        fontFamily: 'Roboto',
+      },
+    }),
   },
   location: {
     fontSize: 14,
-    fontWeight: "bold",
-    fontFamily: "Times New Roman",
-    color: "#333",
+    color: '#6b7280',
+    flex: 0.4,
     textAlign: "right",
-    flexShrink: 1,
-    maxWidth: "40%",
+    ...Platform.select({
+      ios: {
+        fontFamily: 'System',
+      },
+      android: {
+        fontFamily: 'Roboto',
+      },
+    }),
+  },
+  entrySubheader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: 8,
   },
   company: {
     fontSize: 14,
     fontStyle: "italic",
-    fontFamily: "Times New Roman",
-    flexShrink: 1,
-    maxWidth: "60%",
-    textAlign: "left",
+    color: '#374151',
+    flex: 0.6,
+    ...Platform.select({
+      ios: {
+        fontFamily: 'System',
+      },
+      android: {
+        fontFamily: 'Roboto',
+      },
+    }),
   },
   duration: {
     fontSize: 14,
     fontStyle: "italic",
-    fontFamily: "Times New Roman",
+    color: '#6b7280',
+    flex: 0.4,
     textAlign: "right",
-    flexShrink: 1,
-    maxWidth: "40%",
+    ...Platform.select({
+      ios: {
+        fontFamily: 'System',
+      },
+      android: {
+        fontFamily: 'Roboto',
+      },
+    }),
   },
   description: {
     fontSize: 14,
-    lineHeight: 20,
-    fontFamily: "Times New Roman",
+    lineHeight: 22,
+    color: '#374151',
     textAlign: "justify",
-    color: "#444",
+    ...Platform.select({
+      ios: {
+        fontFamily: 'System',
+      },
+      android: {
+        fontFamily: 'Roboto',
+      },
+    }),
   },
 });

@@ -1,44 +1,107 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Platform } from "react-native";
+
+// Define interfaces for skill categories
+interface SkillCategory {
+  category: string;
+  skills: string[];
+}
+
+const skillCategories: SkillCategory[] = [
+  {
+    category: "Programming Languages",
+    skills: [
+      "Python",
+      "Java (Core)",
+      "C/C++",
+      "SQL",
+      "HTML/CSS",
+      "Django",
+      "OOP",
+    ],
+  },
+  {
+    category: "Languages Frameworks & Libraries",
+    skills: ["Django", "HTML/CSS", "Bootstrap", "Pandas", "NumPy", "Streamlit"],
+  },
+  {
+    category: "Tools",
+    skills: [
+      "MS-Office",
+      "VS Code",
+      "Eclipse",
+      "Pycharm",
+      "Git",
+      "GitHub",
+      "Bootstrap",
+      "PIP",
+      "CMD",
+      "Linux",
+      "Windows",
+      "SDLC",
+      "Agile",
+      "Versioning",
+      "Version Controlling",
+      "Excel",
+      "Power Query",
+      "Power Pivot",
+      "Power BI",
+    ],
+  },
+  {
+    category: "Soft Skills",
+    skills: [
+      "Professionalism",
+      "Problem Solving",
+      "Communication",
+      "Presentation",
+      "Team Collaboration",
+      "Adaptability",
+      "Time Management",
+      "Social Media Management",
+      "Project Management",
+      "Tech Support",
+      "IT Support",
+      "Consulting",
+      "Data Analysis",
+      "Dashboard Creation",
+      "Management",
+      "Talent Acquisition",
+      "Technical Recruitment",
+      "Data Entry",
+      "Data Management",
+      "Customer Service",
+      "Client Support",
+      "Document Preparation",
+      "Editing",
+      "Presentations",
+    ],
+  },
+  {
+    category: "Languages",
+    skills: [
+      "English (Fluent)",
+      "Hindi (Fluent)",
+      "Marathi (Fluent)",
+      "Kannada (Fluent)",
+      "German (Basic)",
+    ],
+  },
+];
 
 export default function Skills() {
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>SKILLS</Text>
+      <View>
+        <View />
+      </View>
 
-      <Text style={styles.text}>
-        <Text style={styles.bold}>Programming Languages: </Text>
-        Python, Java (Core), C/C++, SQL, HTML/CSS, Django, OOP.
-      </Text>
-
-      <Text style={styles.text}>
-        <Text style={styles.bold}>Languages Frameworks & Libraries: </Text>
-        Django, HTML/CSS, Bootstrap, Pandas, NumPy, Streamlit.
-      </Text>
-
-      <Text style={styles.text}>
-        <Text style={styles.bold}>Tools: </Text>
-        MS-Office, VS Code, Eclipse, Pycharm, Git, GitHub, Bootstrap, PIP, CMD,
-        Linux, Windows, SDLC, Agile, Versioning, Version Controlling, Excel
-        (VLOOKUP, PIVOT Tables, PIVOT Charts), Advance Excel, Power Query, Power
-        Pivot, Power BI.
-      </Text>
-
-      <Text style={styles.text}>
-        <Text style={styles.bold}>Soft Skills: </Text>
-        Professionalism, Problem Solving, Communication, Presentation, Team
-        Collaboration, Adaptability, Time Management, Social Media Management,
-        Project Management, Tech Support, IT Support, Consulting, Data Analysis,
-        Dashboard Creation, Management, Talent Acquisition, Technical
-        Recruitment, Data Entry, Data Management, Customer Service, Client
-        Support, Document Preparation, Editing, Presentations.
-      </Text>
-
-      <Text style={styles.text}>
-        <Text style={styles.bold}>Languages: </Text>
-        English (Fluent), Hindi (Fluent), Marathi (Fluent), Kannada (Fluent),
-        German (Basic).
-      </Text>
+      {skillCategories.map((category, index) => (
+        <View key={index} style={styles.skillCategory}>
+          <Text style={styles.categoryTitle}>{category.category}: </Text>
+          <Text style={styles.skillsList}>{category.skills.join(", ")}</Text>
+        </View>
+      ))}
     </View>
   );
 }
@@ -48,22 +111,64 @@ const styles = StyleSheet.create({
     paddingVertical: 16,
     paddingHorizontal: 20,
   },
+  headerContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 12,
+    paddingBottom: 8,
+    borderBottomWidth: 1,
+    borderBottomColor: "rgba(0,0,0,0.1)",
+  },
+  headerUnderline: {
+    width: 4,
+    height: 20,
+    backgroundColor: "#1a73e8",
+    marginRight: 10,
+    borderRadius: 2,
+  },
   header: {
     fontSize: 16,
-    fontWeight: "bold",
-    fontFamily: "Times New Roman",
-    borderBottomColor: "#000000",
-    borderBottomWidth: 1,
+    fontWeight: "600",
+    color: "#1f2937",
+    letterSpacing: 0.5,
+    ...Platform.select({
+      ios: {
+        fontFamily: "System",
+      },
+      android: {
+        fontFamily: "Roboto",
+      },
+    }),
+  },
+  skillCategory: {
     marginBottom: 10,
   },
-  text: {
+  categoryTitle: {
     fontSize: 14,
-    fontFamily: "Times New Roman",
-    textAlign: "justify",
-    lineHeight: 20,
-    color: "#000000",
+    fontWeight: "600",
+    color: "#1f2937",
+    marginBottom: 4,
+    ...Platform.select({
+      ios: {
+        fontFamily: "System",
+      },
+      android: {
+        fontFamily: "Roboto",
+      },
+    }),
   },
-  bold: {
-    fontWeight: "bold",
+  skillsList: {
+    fontSize: 14,
+    lineHeight: 22,
+    color: "#374151",
+    textAlign: "justify",
+    ...Platform.select({
+      ios: {
+        fontFamily: "System",
+      },
+      android: {
+        fontFamily: "Roboto",
+      },
+    }),
   },
 });

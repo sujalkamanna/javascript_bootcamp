@@ -1,50 +1,74 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { 
+  View, 
+  Text, 
+  StyleSheet, 
+  Platform 
+} from "react-native";
+
+// Define a type for education entry
+interface EducationEntry {
+  institution: string;
+  location: string;
+  details: string;
+  year: string;
+}
+
+const educationEntries: EducationEntry[] = [
+  {
+    institution: "RMD Sinhgad Technical Institute Campus",
+    location: "Pune, Maharashtra",
+    details: "BE in Computer Science | CGPA: 8.06",
+    year: "2021"
+  },
+  {
+    institution: "Nirmal Bethany Jr College",
+    location: "Pune, Maharashtra",
+    details: "HSC | Percentage: 87.33%",
+    year: "2021"
+  },
+  {
+    institution: "Sanjeevan Public School",
+    location: "Kolhapur, Maharashtra",
+    details: "SSC | Percentage: 86.80%",
+    year: "2019"
+  }
+];
 
 export default function Education() {
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>EDUCATION</Text>
-
-      {/* BE */}
-      <View style={styles.entry}>
-        <View style={styles.row}>
-          <Text style={styles.institution}>
-            RMD Sinhgad Technical Institute Campus
-          </Text>
-          <Text style={styles.location}>Pune, Maharashtra</Text>
-        </View>
-        <View style={styles.row}>
-          <Text style={styles.details}>
-            BE in Computer Science | CGPA: 8.06
-          </Text>
-          <Text style={styles.year}>2021</Text>
-        </View>
+      <View >
+        <View />
       </View>
 
-      {/* HSC */}
-      <View style={styles.entry}>
-        <View style={styles.row}>
-          <Text style={styles.institution}>Nirmal Bethany Jr College</Text>
-          <Text style={styles.location}>Pune, Maharashtra</Text>
-        </View>
-        <View style={styles.row}>
-          <Text style={styles.details}>HSC | Percentage: 87.33%</Text>
-          <Text style={styles.year}>2021</Text>
-        </View>
-      </View>
+      {educationEntries.map((entry, index) => (
+        <View 
+          key={index} 
+          style={[
+            styles.entry, 
+            index !== educationEntries.length - 1 && styles.entryBorder
+          ]}
+        >
+          <View style={styles.entryHeader}>
+            <Text style={styles.institution} numberOfLines={2}>
+              {entry.institution}
+            </Text>
+            <Text style={styles.location} numberOfLines={1}>
+              {entry.location}
+            </Text>
+          </View>
 
-      {/* SSC */}
-      <View style={styles.entry}>
-        <View style={styles.row}>
-          <Text style={styles.institution}>Sanjeevan Public School</Text>
-          <Text style={styles.location}>Kolhapur, Maharashtra</Text>
+          <View style={styles.entryDetails}>
+            <Text style={styles.details} numberOfLines={1}>
+              {entry.details}
+            </Text>
+            <Text style={styles.year} numberOfLines={1}>
+              {entry.year}
+            </Text>
+          </View>
         </View>
-        <View style={styles.row}>
-          <Text style={styles.details}>SSC | Percentage: 86.80%</Text>
-          <Text style={styles.year}>2019</Text>
-        </View>
-      </View>
+      ))}
     </View>
   );
 }
@@ -54,46 +78,109 @@ const styles = StyleSheet.create({
     paddingVertical: 16,
     paddingHorizontal: 20,
   },
+  headerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 12,
+    paddingBottom: 8,
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(0,0,0,0.1)',
+  },
+  headerUnderline: {
+    width: 4,
+    height: 20,
+    backgroundColor: '#1a73e8',
+    marginRight: 10,
+    borderRadius: 2,
+  },
   header: {
     fontSize: 16,
-    fontWeight: "bold",
-    fontFamily: "Times New Roman",
-    borderBottomColor: "#ccc",
-    borderBottomWidth: 1,
-    marginBottom: 5,
+    fontWeight: '600',
+    color: '#1f2937',
+    letterSpacing: 0.5,
+    ...Platform.select({
+      ios: {
+        fontFamily: 'System',
+      },
+      android: {
+        fontFamily: 'Roboto',
+      },
+    }),
   },
   entry: {
-    marginBottom: 5, // reduced from 20
+    marginBottom: 16,
+    paddingBottom: 16,
   },
-  row: {
+  entryBorder: {
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(0,0,0,0.05)',
+  },
+  entryHeader: {
     flexDirection: "row",
     justifyContent: "space-between",
-    flexWrap: "wrap",
-    marginBottom: 5, // added for consistent spacing
+    alignItems: "center",
+    marginBottom: 6,
   },
   institution: {
     fontSize: 14,
-    fontWeight: "bold",
-    fontFamily: "Times New Roman",
-    flexShrink: 1,
-    maxWidth: "60%",
+    fontWeight: "600",
+    color: '#1f2937',
+    flex: 0.6,
+    ...Platform.select({
+      ios: {
+        fontFamily: 'System',
+      },
+      android: {
+        fontFamily: 'Roboto',
+      },
+    }),
   },
   location: {
     fontSize: 14,
-    fontWeight: "bold",
-    fontFamily: "Times New Roman",
-    color: "#333",
+    color: '#6b7280',
+    flex: 0.4,
     textAlign: "right",
+    ...Platform.select({
+      ios: {
+        fontFamily: 'System',
+      },
+      android: {
+        fontFamily: 'Roboto',
+      },
+    }),
+  },
+  entryDetails: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   details: {
     fontSize: 14,
     fontStyle: "italic",
-    fontFamily: "Times New Roman",
+    color: '#374151',
+    flex: 0.6,
+    ...Platform.select({
+      ios: {
+        fontFamily: 'System',
+      },
+      android: {
+        fontFamily: 'Roboto',
+      },
+    }),
   },
   year: {
     fontSize: 14,
     fontStyle: "italic",
-    fontFamily: "Times New Roman",
+    color: '#6b7280',
+    flex: 0.4,
     textAlign: "right",
+    ...Platform.select({
+      ios: {
+        fontFamily: 'System',
+      },
+      android: {
+        fontFamily: 'Roboto',
+      },
+    }),
   },
 });

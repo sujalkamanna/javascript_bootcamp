@@ -1,7 +1,18 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { 
+  View, 
+  Text, 
+  StyleSheet, 
+  Platform 
+} from "react-native";
 
-const projects = [
+// Define a type for project entry
+interface ProjectEntry {
+  title: string;
+  description: string;
+}
+
+const projects: ProjectEntry[] = [
   {
     title: "Django Employee Database",
     description:
@@ -22,10 +33,18 @@ const projects = [
 export default function Projects() {
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>PROJECTS</Text>
+      <View >
+        <View/>
+      </View>
 
       {projects.map((project, index) => (
-        <View key={index} style={styles.entry}>
+        <View 
+          key={index} 
+          style={[
+            styles.entry, 
+            index !== projects.length - 1 && styles.entryBorder
+          ]}
+        >
           <Text style={styles.title}>{project.title}</Text>
           <Text style={styles.description}>{project.description}</Text>
         </View>
@@ -39,27 +58,69 @@ const styles = StyleSheet.create({
     paddingVertical: 16,
     paddingHorizontal: 20,
   },
+  headerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 12,
+    paddingBottom: 8,
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(0,0,0,0.1)',
+  },
+  headerUnderline: {
+    width: 4,
+    height: 20,
+    backgroundColor: '#1a73e8',
+    marginRight: 10,
+    borderRadius: 2,
+  },
   header: {
     fontSize: 16,
-    fontWeight: "bold",
-    fontFamily: "Times New Roman",
-    borderBottomColor: "#ccc",
-    borderBottomWidth: 1,
-    marginBottom: 10,
+    fontWeight: '600',
+    color: '#1f2937',
+    letterSpacing: 0.5,
+    ...Platform.select({
+      ios: {
+        fontFamily: 'System',
+      },
+      android: {
+        fontFamily: 'Roboto',
+      },
+    }),
   },
   entry: {
-    marginBottom: 10,
+    marginBottom: 16,
+    paddingBottom: 16,
+  },
+  entryBorder: {
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(0,0,0,0.05)',
   },
   title: {
     fontSize: 14,
-    fontWeight: "bold",
-    fontFamily: "Times New Roman",
+    fontWeight: '600',
+    color: '#1f2937',
+    marginBottom: 6,
+    ...Platform.select({
+      ios: {
+        fontFamily: 'System',
+      },
+      android: {
+        fontFamily: 'Roboto',
+      },
+    }),
   },
   description: {
     fontSize: 14,
-    fontFamily: "Times New Roman",
+    lineHeight: 22,
+    color: '#374151',
     textAlign: "justify",
-    lineHeight: 20,
-    color: "#444",
+    ...Platform.select({
+      ios: {
+        fontFamily: 'System',
+      },
+      android: {
+        fontFamily: 'Roboto',
+      },
+    }),
   },
 });

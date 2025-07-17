@@ -1,7 +1,24 @@
 import React from "react";
-import { View, Text, StyleSheet, Linking } from "react-native";
+import { 
+  View, 
+  Text, 
+  StyleSheet, 
+  Linking, 
+  TouchableOpacity,
+  Platform 
+} from "react-native";
 
-const publications = [
+// Define a type for publication entry
+interface PublicationEntry {
+  title: string;
+  linkText: string;
+  linkUrl: string;
+  source: string;
+  date: string;
+  description: string;
+}
+
+const publications: PublicationEntry[] = [
   {
     title: "Decentralized Funding Solutions: A Blockchain Approach to Crowdfunding -",
     linkText: "Link",
@@ -17,26 +34,34 @@ const publications = [
 export default function Publication() {
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>PUBLICATIONS / RESEARCH PAPERS</Text>
+      <View >
+        <View  />
+      </View>
 
       {publications.map((pub, index) => (
-        <View key={index} style={styles.entry}>
-          <View style={styles.row}>
-            <Text style={styles.title}>
+        <View 
+          key={index} 
+          style={[
+            styles.entry, 
+            index !== publications.length - 1 && styles.entryBorder
+          ]}
+        >
+          <View style={styles.entryHeader}>
+            <Text style={styles.title} numberOfLines={2}>
               {pub.title}{" "}
-              <Text
-                style={styles.link}
-                onPress={() => Linking.openURL(pub.linkUrl)}
-              >
-                {pub.linkText}
-              </Text>
+              <TouchableOpacity onPress={() => Linking.openURL(pub.linkUrl)}>
+                <Text style={styles.link}>{pub.linkText}</Text>
+              </TouchableOpacity>
             </Text>
-            <Text style={styles.date}>{pub.date}</Text>
+            <Text style={styles.date} numberOfLines={1}>
+              {pub.date}
+            </Text>
           </View>
 
-          <View style={[styles.row, { marginBottom: 6 }]}>
-            <Text style={styles.source}>{pub.source}</Text>
-            <View style={{ width: 40 }} /> {/* empty space for right alignment */}
+          <View style={styles.entrySubheader}>
+            <Text style={styles.source} numberOfLines={2}>
+              {pub.source}
+            </Text>
           </View>
 
           <Text style={styles.description}>{pub.description}</Text>
@@ -51,56 +76,111 @@ const styles = StyleSheet.create({
     paddingVertical: 16,
     paddingHorizontal: 20,
   },
+  headerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 12,
+    paddingBottom: 8,
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(0,0,0,0.1)',
+  },
+  headerUnderline: {
+    width: 4,
+    height: 20,
+    backgroundColor: '#1a73e8',
+    marginRight: 10,
+    borderRadius: 2,
+  },
   header: {
     fontSize: 16,
-    fontWeight: "bold",
-    fontFamily: "Times New Roman",
-    borderBottomColor: "#ccc",
-    borderBottomWidth: 1,
-    marginBottom: 10,
+    fontWeight: '600',
+    color: '#1f2937',
+    letterSpacing: 0.5,
+    ...Platform.select({
+      ios: {
+        fontFamily: 'System',
+      },
+      android: {
+        fontFamily: 'Roboto',
+      },
+    }),
   },
   entry: {
-    marginBottom: 0,
+    marginBottom: 16,
+    paddingBottom: 16,
   },
-  row: {
+  entryBorder: {
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(0,0,0,0.05)',
+  },
+  entryHeader: {
     flexDirection: "row",
     justifyContent: "space-between",
-    flexWrap: "wrap",
+    alignItems: "center",
+    marginBottom: 6,
   },
   title: {
     fontSize: 14,
-    fontWeight: "bold",
-    fontFamily: "Times New Roman",
-    flexShrink: 1,
-    maxWidth: "70%",
-    textAlign: "left",
+    fontWeight: "600",
+    color: '#1f2937',
+    flex: 0.7,
+    ...Platform.select({
+      ios: {
+        fontFamily: 'System',
+      },
+      android: {
+        fontFamily: 'Roboto',
+      },
+    }),
   },
   link: {
-    color: "blue",
+    color: "#1a73e8",
     textDecorationLine: "underline",
+    marginLeft: 4,
   },
   date: {
     fontSize: 14,
     fontStyle: "italic",
-    fontFamily: "Times New Roman",
+    color: '#6b7280',
+    flex: 0.3,
     textAlign: "right",
-    flexShrink: 1,
-    maxWidth: "30%",
+    ...Platform.select({
+      ios: {
+        fontFamily: 'System',
+      },
+      android: {
+        fontFamily: 'Roboto',
+      },
+    }),
+  },
+  entrySubheader: {
+    marginBottom: 8,
   },
   source: {
     fontSize: 14,
     fontStyle: "italic",
-    fontFamily: "Times New Roman",
-    flexShrink: 1,
-    maxWidth: "100%",
-    textAlign: "left",
+    color: '#374151',
+    ...Platform.select({
+      ios: {
+        fontFamily: 'System',
+      },
+      android: {
+        fontFamily: 'Roboto',
+      },
+    }),
   },
   description: {
-    marginTop: 4,
     fontSize: 14,
-    fontFamily: "Times New Roman",
+    lineHeight: 22,
+    color: '#374151',
     textAlign: "justify",
-    lineHeight: 20,
-    color: "#444",
+    ...Platform.select({
+      ios: {
+        fontFamily: 'System',
+      },
+      android: {
+        fontFamily: 'Roboto',
+      },
+    }),
   },
 });
