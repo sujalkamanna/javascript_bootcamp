@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import {
   View,
   Text,
@@ -9,12 +10,16 @@ import {
   Button,
   Pressable,
   Alert,
+  Modal,
+  StatusBar,
+  ActivityIndicator,
 } from "react-native";
 import { styles1 } from "./styles";
 
 const local_image = require("../../assets/images/adaptive-icon.png");
 
 export default function App() {
+  const [isModalVisible, setModalVisible] = useState(false);
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -61,11 +66,35 @@ export default function App() {
       <View style={{ height: 16 }} />
 
       <Pressable
-        onLongPress={() => alert("Long press button")}
+        onLongPress={() => {
+          alert("Opening modal...");
+          setModalVisible(true);
+        }}
         style={styles.lpbtn}
       >
         <Text style={styles.lpbtnText}>Long Press Button</Text>
       </Pressable>
+
+      <Modal
+        visible={isModalVisible}
+        animationType="slide" //fade and slide
+        transparent={false}
+        presentationStyle="pageSheet" //formsheet or pagesheet
+        onRequestClose={() => setModalVisible(false)}
+      >
+        <View>
+          <Text>Modal content</Text>
+          <Button title="Close" onPress={() => setModalVisible(false)} />
+        </View>
+      </Modal>
+      <View>
+        <StatusBar backgroundColor="#000000" barStyle="light-content" hidden />
+      </View>
+      <View>
+        <ActivityIndicator />
+        <ActivityIndicator size="large" color= "#999"/>
+        <ActivityIndicator size="large" color="#3f3f3f" animating={true} />
+      </View>
     </ScrollView>
   );
 }
