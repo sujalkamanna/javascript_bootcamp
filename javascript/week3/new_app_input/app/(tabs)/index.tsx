@@ -1,6 +1,8 @@
 import { Platform, Text, View, StyleSheet } from "react-native";
 import { ScrollView, TextInput } from "react-native";
 import { useState } from "react";
+// import AsyncStorage from "@react-native-async-storage/async-storage";
+
 export default function HomeScreen() {
   const [name, setname] = useState("");
   return (
