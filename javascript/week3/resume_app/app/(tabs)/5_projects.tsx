@@ -26,7 +26,7 @@ const projects: ProjectEntry[] = [
     title: "Django Employee Database",
     description:
       "Developed a Django-based Employee Management System to streamline and manage employee data within an organization, improving efficiency and data accessibility.",
-    technologies: ["Django", "Python", "PostgreSQL", "HTML/CSS"],
+    technologies: ["Django", "Python", "HTML/CSS"],
     category: "web",
     status: "completed",
     githubUrl: "https://github.com/username/django-employee-db",
@@ -48,7 +48,7 @@ const projects: ProjectEntry[] = [
     technologies: ["HTML", "CSS", "JavaScript", "Responsive Design"],
     category: "web",
     status: "completed",
-    liveUrl: "https://yourportfolio.com",
+    liveUrl: "https://sujalkamanna.interns-es2.in/",
   },
 ];
 
