@@ -9,15 +9,21 @@ export default function HomeScreen() {
         <View>
           <Text>flex box</Text>
         </View>
-        <Box style={{ backgroundColor: "red" }}>Box1</Box>
-        <Box style={{ backgroundColor: "#e0b9b9ff" }}>Box2</Box>
-        <Box style={{ backgroundColor: "#fff000" }}>Box3</Box>
-        {/* <Box style={{ backgroundColor: "#312d2dff" }}>Box4</Box>
-        <Box style={{ backgroundColor: "plum" }}>Box5</Box> */}
+        <Box style={{ backgroundColor: "red", alignSelf: "flex-end" }}>
+          Box1
+        </Box>
+        <Box style={{ backgroundColor: "#e0b9b9ff", alignSelf: "flex-start" }}>
+          Box2
+        </Box>
+        <Box style={{ backgroundColor: "#fff000", alignSelf: "center" }}>
+          Box3
+        </Box>
+        <Box style={{ backgroundColor: "#312d2dff" }}>Box4</Box>
+        <Box style={{ backgroundColor: "plum", flexWrap: "wrap" }}>Box5</Box>
       </View>
       {/* <View style = {{backgroundColor:"plum",flex:1}}>
 
-      </View> */}
+      </View>  */}
     </View>
   );
 }
@@ -25,11 +31,12 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent:"flex-end",
+    justifyContent: "flex-end",
     // flexDirection:"row",
     // marginTop: 50,
     borderWidth: 5,
     borderColor: "red",
-    alignItems:"flex-start",
+    // alignItems:"flex-start",
+    // flexWrap: "wrap",
   },
 });
