@@ -21,17 +21,17 @@ import Box from "@/components/box";
 //   );
 // }
 
-export default function HomeScreen(){
-  return(
-    <View>
-      <View>
-        <Text>
-          input
-        </Text>
-      </View>
-    </View>
-  );
-}
+// export default function HomeScreen(){
+//   return(
+//     <View>
+//       <View>
+//         <Text>
+//           input
+//         </Text>
+//       </View>
+//     </View>
+//   );
+// }
 
 const styles = StyleSheet.create({
   container: {
