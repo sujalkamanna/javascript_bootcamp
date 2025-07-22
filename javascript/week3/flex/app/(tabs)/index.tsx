@@ -38,5 +38,6 @@ const styles = StyleSheet.create({
     borderColor: "red",
     // alignItems:"flex-start",
     // flexWrap: "wrap",
+    alignContent: "flex-start",
   },
 });
