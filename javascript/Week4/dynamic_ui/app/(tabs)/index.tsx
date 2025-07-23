@@ -1,56 +1,61 @@
-import { useState, useEffect } from "react";
 import {
-  Platform,
   View,
   StyleSheet,
   Text,
-  Dimensions,
-  ViewStyle,
+  useWindowDimensions,
+  SafeAreaView,
+  Platform,
 } from "react-native";
+import CustomButtonIos from "@/components/customButton/custombutton.ios";
+import CustomButtonAnd from "@/components/customButton/custombutton.and";
 
 export default function HomeScreen() {
-  const [dimensions, setDimensions] = useState({
-    window: Dimensions.get("window"),
-  });
-
-  useEffect(() => {
-    const subscription = Dimensions.addEventListener("change", ({ window }) => {
-      setDimensions({ window });
-    });
-
-    return () => subscription?.remove();
-  }, []);
-
-  const { width: window_width, height: window_height } = dimensions.window;
-
-  const dynamicBoxStyle: ViewStyle = {
-    width: window_width > 500 ? "70%" : "90%",
-    height: window_width > 600 ? "60%" : "90%",
-  };
-
-  const dynamicTextStyle = {
-    fontSize: window_width > 500 ? 50 : 24,
-  };
+  const windowWidth = useWindowDimensions().width;
+  const windowHeight = useWindowDimensions().height;
 
   return (
-    <View style={styles.container}>
-      <View style={[styles.box, dynamicBoxStyle]}>
-        <Text style={dynamicTextStyle}>Welcome!</Text>
+    <SafeAreaView style={styles.safecontainer}>
+      <View style={styles.container}>
+        <View style={styles.box}>
+          <Text style={styles.texts}>Welcome!</Text>
+          <CustomButtonAnd title="Press Me" onPress={() => alert("Pressed")} />
+          <CustomButtonIos title="Press Me" onPress={() => alert("Pressed")}/>
+        </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  safecontainer: {
+    flex: 1,
+    backgroundColor: "plum",
+  },
   container: {
     flex: 1,
     backgroundColor: "plum",
-    justifyContent: "center",
-    alignItems: "center",
+    paddingTop: Platform.OS === "android" ? 25 : 0,
   },
   box: {
-    backgroundColor: "lightblue",
-    alignItems: "center",
-    justifyContent: "center",
+    padding: 20,
+  },
+  texts: {
+    fontWeight: "bold",
+    textAlign: "center",
+    ...Platform.select({
+      ios: {
+        colour: "purple",
+        fontSize: 24,
+        fontStyle: "italic",
+      },
+      android: {
+        colour: "blue",
+        fontSize: 25,
+      },
+      default: {
+        colour: "white",
+        fontSize: 24,
+      },
+    }),
   },
 });
