@@ -1,0 +1,18 @@
+[
+  {
+    "type": "Grass",
+    "data": ["Bulbasaur", "Venusaur", "Chikorita"]
+  },
+  {
+    "type": "Fire",
+    "data": ["Charmander", "Cyndaquil", "Torchic"]
+  },
+  {
+    "type": "Water",
+    "data": ["Squirtle", "Totodile", "Mudkip"]
+  },
+  {
+    "type": "Electric",
+    "data": ["Pikachu", "Mareep", "Electrike"]
+  }
+]
