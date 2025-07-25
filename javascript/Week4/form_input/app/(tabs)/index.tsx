@@ -1,75 +1,181 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
-
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-
+import React from "react";
+import {
+  Platform,
+  StyleSheet,
+  TextInput,
+  View,
+  Text,
+  StatusBar,
+  SafeAreaView,
+  Switch,
+  Button,
+  Image,
+  KeyboardAvoidingView,
+} from "react-native";
+import { useState } from "react";
+import codegenNativeCommands from "react-native/Libraries/Utilities/codegenNativeCommands";
 export default function HomeScreen() {
+  const [name, setname] = useState("");
+  const [isDarkMode, setisDarkMode] = useState(false);
+  const [userName, setuserName] = useState("");
+  const [password, setpassword] = useState("");
+  const [Errors, setErrors] = useState(
+    {} as { username?: string; password?: string }
+  );
+
+  type FormErrors = {
+    username?: string;
+    password?: string;
+  };
+
+  const validateForm = () => {
+    let Errors: FormErrors = {};
+    if (!userName) Errors.username = "Username is incorrect";
+    if (!password) Errors.password = "Password is incorrect";
+
+    setErrors(Errors);
+    return Object.keys(Errors).length === 0;
+  };
+
+  const handleSubmit = () => {
+    if (validateForm()) {
+      console.log("Submitted", userName, password);
+      setuserName("");
+      setpassword("");
+      setErrors({});
+    }
+  };
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
+    <SafeAreaView style={styles.container}>
+      <View>
+        <Text>Add data</Text>
+        <TextInput
+          style={styles.text_input}
+          onChangeText={setname}
+          placeholder="email@example.com"
+          autoCorrect={false}
+          autoCapitalize="none"
         />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+
+        <TextInput
+          style={styles.text_input}
+          placeholder="enter password"
+          secureTextEntry
+          // keyboardType= "numeric"
+        />
+        <Text>My name is {name}</Text>
+
+        <TextInput
+          style={[styles.text_input, styles.multiLineTExt]}
+          placeholder="message"
+          multiline
+        />
+
+        <View style={styles.switchContainer}>
+          <Text style={styles.text}>Dark Mode</Text>
+          <Switch
+            value={isDarkMode}
+            onValueChange={() =>
+              setisDarkMode((previousState) => !previousState)
+            }
+            trackColor={{ false: "#ebd5e6ff", true: "plum" }}
+            thumbColor="#ddd0d0ff"
+          />
+        </View>
+
+        <KeyboardAvoidingView behavior="padding" style={styles.container1}>
+          <View style={styles.form}>
+            <Image
+              source={require("../../assets/images/adaptive-icon.png")}
+              style={{ height: 50, width: 50, alignSelf: "center" }}
+            />
+            <Text>UserName</Text>
+            <TextInput
+              placeholder="Enter Username"
+              style={styles.formInput}
+              value={userName}
+              onChangeText={setuserName}
+              keyboardType="email-address"
+            />
+            {Errors.username ? (
+              <Text style={{ color: "red", marginBottom: 8 }}>
+                {Errors.username}
+              </Text>
+            ) : null}
+            <Text>Password</Text>
+            <TextInput
+              placeholder="Password"
+              secureTextEntry
+              style={styles.formInput}
+              value={password}
+              onChangeText={setpassword}
+            />{" "}
+            {Errors.password ? (
+              <Text style={{ color: "red", marginBottom: 8 }}>
+                {Errors.password}
+              </Text>
+            ) : null}
+            <Button title="Login" onPress={handleSubmit} />
+
+          </View>
+        </KeyboardAvoidingView>
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  container1: {
+    flex: 1,
+    justifyContent: "center",
+    paddingHorizontal: 28,
+    backgroundColor: "#f5f5f5",
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  form: {
+    backgroundColor: "white",
+    padding: 20,
+    borderRadius: 10,
+    shadowColor: "black",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  text_input: {
+    height: 40,
+    margin: 12,
+    padding: 10,
+    borderWidth: 1,
+  },
+  multiLineTExt: {
+    minHeight: 100,
+    textAlignVertical: "top",
+  },
+  switchContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingHorizontal: 10,
+    marginTop: 20,
+  },
+  text: {
+    fontSize: 16,
+  },
+  formInput: {
+    borderColor: "black",
+    borderWidth: 1,
+    borderRadius: 8,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    fontSize: 16,
+    backgroundColor: "white",
   },
 });
