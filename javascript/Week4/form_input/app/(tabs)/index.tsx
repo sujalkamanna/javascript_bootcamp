@@ -11,15 +11,40 @@ import {
   Button,
   Image,
   KeyboardAvoidingView,
-
 } from "react-native";
 import { useState } from "react";
+import codegenNativeCommands from "react-native/Libraries/Utilities/codegenNativeCommands";
 export default function HomeScreen() {
   const [name, setname] = useState("");
   const [isDarkMode, setisDarkMode] = useState(false);
   const [userName, setuserName] = useState("");
   const [password, setpassword] = useState("");
+  const [Errors, setErrors] = useState(
+    {} as { username?: string; password?: string }
+  );
 
+  type FormErrors = {
+    username?: string;
+    password?: string;
+  };
+
+  const validateForm = () => {
+    let Errors: FormErrors = {};
+    if (!userName) Errors.username = "Username is incorrect";
+    if (!password) Errors.password = "Password is incorrect";
+
+    setErrors(Errors);
+    return Object.keys(Errors).length === 0;
+  };
+
+  const handleSubmit = () => {
+    if (validateForm()) {
+      console.log("Submitted", userName, password);
+      setuserName("");
+      setpassword("");
+      setErrors({});
+    }
+  };
   return (
     <SafeAreaView style={styles.container}>
       <View>
@@ -58,14 +83,12 @@ export default function HomeScreen() {
           />
         </View>
 
-        <KeyboardAvoidingView behavior="padding"
-        style={styles.container1}>
+        <KeyboardAvoidingView behavior="padding" style={styles.container1}>
           <View style={styles.form}>
             <Image
               source={require("../../assets/images/adaptive-icon.png")}
               style={{ height: 50, width: 50, alignSelf: "center" }}
             />
-
             <Text>UserName</Text>
             <TextInput
               placeholder="Enter Username"
@@ -74,6 +97,11 @@ export default function HomeScreen() {
               onChangeText={setuserName}
               keyboardType="email-address"
             />
+            {Errors.username ? (
+              <Text style={{ color: "red", marginBottom: 8 }}>
+                {Errors.username}
+              </Text>
+            ) : null}
             <Text>Password</Text>
             <TextInput
               placeholder="Password"
@@ -81,8 +109,14 @@ export default function HomeScreen() {
               style={styles.formInput}
               value={password}
               onChangeText={setpassword}
-            />
-            <Button title="login" onPress={() => {}} />
+            />{" "}
+            {Errors.password ? (
+              <Text style={{ color: "red", marginBottom: 8 }}>
+                {Errors.password}
+              </Text>
+            ) : null}
+            <Button title="Login" onPress={handleSubmit} />
+
           </View>
         </KeyboardAvoidingView>
       </View>
