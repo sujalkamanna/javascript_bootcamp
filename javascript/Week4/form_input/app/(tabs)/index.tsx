@@ -8,12 +8,18 @@ import {
   StatusBar,
   SafeAreaView,
   Switch,
+  Button,
+  Image,
+  KeyboardAvoidingView,
+
 } from "react-native";
 import { useState } from "react";
-
 export default function HomeScreen() {
   const [name, setname] = useState("");
   const [isDarkMode, setisDarkMode] = useState(false);
+  const [userName, setuserName] = useState("");
+  const [password, setpassword] = useState("");
+
   return (
     <SafeAreaView style={styles.container}>
       <View>
@@ -47,10 +53,38 @@ export default function HomeScreen() {
             onValueChange={() =>
               setisDarkMode((previousState) => !previousState)
             }
-            trackColor={{false:"#000000", true:"#lightblue"}}
-            thumbColor="#f4f33f4"
+            trackColor={{ false: "#ebd5e6ff", true: "plum" }}
+            thumbColor="#ddd0d0ff"
           />
         </View>
+
+        <KeyboardAvoidingView behavior="padding"
+        style={styles.container1}>
+          <View style={styles.form}>
+            <Image
+              source={require("../../assets/images/adaptive-icon.png")}
+              style={{ height: 50, width: 50, alignSelf: "center" }}
+            />
+
+            <Text>UserName</Text>
+            <TextInput
+              placeholder="Enter Username"
+              style={styles.formInput}
+              value={userName}
+              onChangeText={setuserName}
+              keyboardType="email-address"
+            />
+            <Text>Password</Text>
+            <TextInput
+              placeholder="Password"
+              secureTextEntry
+              style={styles.formInput}
+              value={password}
+              onChangeText={setpassword}
+            />
+            <Button title="login" onPress={() => {}} />
+          </View>
+        </KeyboardAvoidingView>
       </View>
     </SafeAreaView>
   );
@@ -61,6 +95,25 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+  },
+  container1: {
+    flex: 1,
+    justifyContent: "center",
+    paddingHorizontal: 28,
+    backgroundColor: "#f5f5f5",
+  },
+  form: {
+    backgroundColor: "white",
+    padding: 20,
+    borderRadius: 10,
+    shadowColor: "black",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
   },
   text_input: {
     height: 40,
@@ -81,5 +134,14 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 16,
+  },
+  formInput: {
+    borderColor: "black",
+    borderWidth: 1,
+    borderRadius: 8,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    fontSize: 16,
+    backgroundColor: "white",
   },
 });
