@@ -10,7 +10,6 @@ import {
   ActivityIndicator,
   ScrollView,
 } from "react-native";
-
 // Define Post type
 interface Post {
   userId: number;
@@ -22,6 +21,7 @@ interface Post {
 export default function HomeScreen() {
   const [postList, setPostList] = useState<Post[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [isLoading, setisLoading] = useState(true);
 
   const fetchData = async (Limit = 5) => {
     try {
@@ -30,6 +30,7 @@ export default function HomeScreen() {
       );
       const data: Post[] = await response.json();
       setPostList(data);
+      setisLoading(false);
     } catch (error) {
       console.error("Failed to fetch posts:", error);
     } finally {
@@ -65,6 +66,14 @@ export default function HomeScreen() {
     <Text style={styles.emptyText}>No posts found 😕</Text>
   );
 
+  if (isLoading) {
+    return (
+      <SafeAreaView style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="ffffff" />
+        <Text>...Loading</Text>
+      </SafeAreaView>
+    );
+  }
   return (
     <ScrollView>
       <SafeAreaView style={styles.container}>
@@ -127,5 +136,12 @@ const styles = StyleSheet.create({
     marginTop: 50,
     color: "#888",
     fontSize: 16,
+  },
+  loadingContainer: {
+    flex: 1,
+    backgroundColor: "#00000f",
+    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
