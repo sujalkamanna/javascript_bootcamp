@@ -27,6 +27,7 @@ export default function HomeScreen() {
   const [postBody, setpostBody] = useState("");
   const [postTitle, setpostTitle] = useState("");
   const [isPosting, setisPosting] = useState(false);
+  const [error, setError] = useState("")
 
   const fetchData = async (limit = 5) => {
     try {
@@ -35,8 +36,12 @@ export default function HomeScreen() {
       );
       const data: Post[] = await response.json();
       setPostList(data);
+      setIsLoading(false);
+      setError("")
     } catch (error) {
       console.error("Failed to fetch posts:", error);
+      setIsLoading(false);
+      setError("Failed to fetch list")
     } finally {
       setIsLoading(false);
     }
@@ -52,20 +57,23 @@ export default function HomeScreen() {
     setisPosting(true);
 
     try {
-      const response = await fetch("https://jsonplaceholder.typicode.com/posts", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          title: postTitle,
-          body: postBody,
-          userId: 1,
-        }),
-      });
+      const response = await fetch(
+        "https://jsonplaceholder.typicode.com/posts",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            title: postTitle,
+            body: postBody,
+            userId: 1,
+          }),
+        }
+      );
 
       const newPost: Post = await response.json();
-
+      setPostList((prevPosts) => [newPost, ...prevPosts]);
       // Add the new post at the top of the list
       setPostList((prevPosts) => [newPost, ...prevPosts]);
 
@@ -93,7 +101,9 @@ export default function HomeScreen() {
   );
 
   const ItemSeparator = () => <View style={styles.separator} />;
-  const ListHeader = () => <Text style={styles.headerText}>📰 Latest Posts</Text>;
+  const ListHeader = () => (
+    <Text style={styles.headerText}>📰 Latest Posts</Text>
+  );
   const ListFooter = () =>
     postList.length > 0 ? (
       <Text style={styles.footerText}>End of List</Text>
