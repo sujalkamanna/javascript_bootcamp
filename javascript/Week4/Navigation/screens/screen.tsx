@@ -9,17 +9,17 @@ type RootStackParamList = {
 
 type HomeScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
-  "Home"
+  "About"
 >;
 
 type Props = {
   navigation: HomeScreenNavigationProp;
 };
-export default function Homescreen({ navigation }: Props) {
+export default function About({ navigation }: Props) {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Home Screen</Text>
-      <Button title="About" onPress={() => navigation.navigate("About")} />
+      <Text style={styles.text}>About Page</Text>
+      <Button title="Home" onPress={() => navigation.navigate("Home")} />
     </View>
   );
 }
