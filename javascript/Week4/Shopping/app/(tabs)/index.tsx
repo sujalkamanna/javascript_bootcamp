@@ -8,7 +8,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "@/Screens/Home";
 import Details from "@/Screens/Details";
 
-interface Product {
+export interface Product {
   id: string;
   name: string;
   imageUrl: string;
@@ -19,6 +19,7 @@ interface Product {
   ratingCount: number;
   tags: string[];
 }
+
 
 export type RootStackparamList = {
   Home: undefined;
