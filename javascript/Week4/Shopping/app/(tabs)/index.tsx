@@ -8,6 +8,9 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "@/Screens/Home";
 import Details from "@/Screens/Details";
 
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+
+
 export interface Product {
   id: string;
   name: string;
@@ -49,4 +52,6 @@ export default function App() {
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+
+});
