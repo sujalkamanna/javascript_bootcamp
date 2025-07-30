@@ -1,6 +1,6 @@
 import type { Product } from "@/app/(tabs)";
 
-const demoProducts: Product[] = [
+export const demoProducts: Product[] = [
   {
     id: 'prod‑001',
     name: 'Wireless Earbuds',
