@@ -6,14 +6,12 @@ import {
   SafeAreaView,
   ScrollView,
 } from "react-native";
-
+import FlatCard from "@/components/flatCard";
 export default function HomeScreen() {
   return (
     <SafeAreaView>
       <ScrollView>
-        <Text>
-          App
-        </Text>
+        <FlatCard />
       </ScrollView>
     </SafeAreaView>
   );
